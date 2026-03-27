@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LagrangeX Pro</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+        <h1>⚡ LagrangeX</h1>
+        <p class="subtitle">Optimize. Visualize. Solve.</p>
+
+        <label>Objective Function</label>
+        <input id="objective" placeholder="e.g. 10*x1 + 6*x2 - x1**2">
+
+        <label>Constraint (=0)</label>
+        <input id="constraint" placeholder="e.g. x1 + 2*x2 - 10">
+
+        <label>Optimization Type</label>
+        <select id="mode">
+            <option value="max">Maximize</option>
+            <option value="min">Minimize</option>
+        </select>
+
+        <button onclick="solve()"> Solve</button>
+        <button class="secondary" onclick="loadExample()">⚡ Example</button>
+    </div>
+
+    <div class="right-panel">
+        <div id="output"></div>
+        
+       
+            <div id="plotlyGraph" style="width: 100%; height: 400px; display: none; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,255,255,0.2); border-radius: 12px; padding: 10px; margin-bottom: 12px;"></div>
+        
+
+        <div id="barChart"></div>
+
+        <div id="explanationBox">
+            <h3> AI Explanation</h3>
+            <div id="explanation"></div>
+        </div>
+
+        <div id="chatBox"></div>
+
+        <div class="chat-mini">
+            <input id="chatInput" placeholder="Ask something...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/script.js"></script>
+
+<script>
+function loadExample() {
+    document.getElementById("objective").value = "10*x1 + 6*x2 + 4*x3 - x1**2 - 2*x2**2 - 3*x3**2";
+    document.getElementById("constraint").value = "x1 + 2*x2 + 3*x3 - 20";
+    document.getElementById("mode").value = "max";
+}
+
+function sendMessage() {
+    let input = document.getElementById("chatInput");
+    let msg = input.value.trim();
+
+    if (!msg) {
+        input.placeholder = "⚠️ Please type a message first!";
+        setTimeout(() => input.placeholder = "Ask something...", 2000);
+        return;
+    }
+
+    let currentObjective = document.getElementById("objective").value || "None";
+    let currentConstraint = document.getElementById("constraint").value || "None";
+
+    let chatBox = document.getElementById("chatBox");
+
+    // Show user message
+    chatBox.innerHTML += `<div class="user-msg">${msg}</div>`;
+    
+    // Add a temporary "Thinking..." message
+    let loadingId = "load-" + Date.now();
+    chatBox.innerHTML += `<div class="bot-msg" id="${loadingId}">⏳ Thinking...</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            message: msg,
+            objective: currentObjective,
+            constraint: currentConstraint
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Remove the "Thinking..." message
+        let loader = document.getElementById(loadingId);
+        if(loader) loader.remove();
+
+        // Parse markdown and math
+        let parsedReply = marked.parse(data.reply);
+        chatBox.innerHTML += `<div class="bot-msg">${parsedReply}</div>`;
+        
+        if (window.MathJax) {
+            MathJax.typesetPromise([chatBox]);
+        }
+        chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(() => {
+        let loader = document.getElementById(loadingId);
+        if(loader) loader.remove();
+        chatBox.innerHTML += `<div class="bot-msg">⚠️ Server error</div>`;
+    });
+
+    // Clear the input box!
+    input.value = "";
+}
+
+// Allow pressing "Enter" to send
+document.getElementById("chatInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+});
+</script>
+
+</body>
+</html>
