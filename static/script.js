@@ -31,6 +31,7 @@ function solve() {
         }
         document.getElementById("output").innerHTML = output;
 
+        // ✅ SHOW MATHEMATICAL 3D PLOTLY GRAPH (From Python)
         if (sol.plotly_json) {
             document.getElementById("plotlyGraph").style.display = "block";
             let fig = JSON.parse(sol.plotly_json);
@@ -39,7 +40,8 @@ function solve() {
             document.getElementById("plotlyGraph").style.display = "none";
         }
 
-         let explanationText = data.explanation || "⚠️ No explanation generated.";
+        // ✅ SHOW AI EXPLANATION
+        let explanationText = data.explanation || "⚠️ No explanation generated.";
         document.getElementById("explanation").innerHTML = marked.parse(explanationText);
 
         if (window.MathJax) {
@@ -112,5 +114,3 @@ function drawBarChart(sol) {
     // Draw the 3D Bar chart!
     Plotly.newPlot("barChart", traces, layout, {responsive: true});
 }
-
-        
