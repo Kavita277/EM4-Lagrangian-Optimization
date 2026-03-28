@@ -152,7 +152,7 @@ button:hover {
     border-radius: 12px;
     background: rgba(0,0,0,0.4);
     border: 1px solid rgba(0,255,255,0.2);
-    padding: 9px;
+    padding: 8px;
 }
 
 /* AI EXPLANATION */
@@ -224,7 +224,7 @@ button:hover {
 }
 /* SCROLLBAR */
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
