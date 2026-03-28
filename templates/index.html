@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <div class="container">
 
     <div class="left-panel">
@@ -107,11 +106,11 @@ function sendMessage() {
     })
     .then(res => res.json())
     .then(data => {
-        // Remove the "Thinking..." message
+
         let loader = document.getElementById(loadingId);
         if(loader) loader.remove();
 
-        // Parse markdown and math
+  
         let parsedReply = marked.parse(data.reply);
         chatBox.innerHTML += `<div class="bot-msg">${parsedReply}</div>`;
         
@@ -126,11 +125,10 @@ function sendMessage() {
         chatBox.innerHTML += `<div class="bot-msg">⚠️ Server error</div>`;
     });
 
-    // Clear the input box!
     input.value = "";
 }
 
-// Allow pressing "Enter" to send
+
 document.getElementById("chatInput").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
