@@ -40,8 +40,7 @@ function solve() {
             document.getElementById("plotlyGraph").style.display = "none";
         }
 
-        // ✅ SHOW AI EXPLANATION
-        let explanationText = data.explanation || "⚠️ No explanation generated.";
+         let explanationText = data.explanation || "⚠️ No explanation generated.";
         document.getElementById("explanation").innerHTML = marked.parse(explanationText);
 
         if (window.MathJax) {
