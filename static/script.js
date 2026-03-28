@@ -114,3 +114,4 @@ function drawBarChart(sol) {
     // Draw the 3D Bar chart!
     Plotly.newPlot("barChart", traces, layout, {responsive: true});
 }
+
