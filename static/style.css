@@ -147,13 +147,12 @@ button:hover {
 }
 
 /* GRAPH */
-/* GRAPH */
 #barChart {
     height: 300px !important;  /* 🔥 Increased height for 3D room */
     border-radius: 12px;
     background: rgba(0,0,0,0.4);
     border: 1px solid rgba(0,255,255,0.2);
-    padding: 8px;
+    padding: 9px;
 }
 
 /* AI EXPLANATION */
@@ -225,7 +224,7 @@ button:hover {
 }
 /* SCROLLBAR */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
