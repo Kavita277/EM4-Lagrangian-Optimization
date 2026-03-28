@@ -7,7 +7,6 @@
 </head>
 <body>
 <div class="container">
-
     <div class="left-panel">
         <h1>⚡ LagrangeX</h1>
         <p class="subtitle">Optimize. Visualize. Solve.</p>
@@ -30,11 +29,8 @@
 
     <div class="right-panel">
         <div id="output"></div>
-        
-       
             <div id="plotlyGraph" style="width: 100%; height: 400px; display: none; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,255,255,0.2); border-radius: 12px; padding: 10px; margin-bottom: 12px;"></div>
         
-
         <div id="barChart"></div>
 
         <div id="explanationBox">
@@ -87,10 +83,10 @@ function sendMessage() {
 
     let chatBox = document.getElementById("chatBox");
 
-    // Show user message
+
     chatBox.innerHTML += `<div class="user-msg">${msg}</div>`;
     
-    // Add a temporary "Thinking..." message
+
     let loadingId = "load-" + Date.now();
     chatBox.innerHTML += `<div class="bot-msg" id="${loadingId}">⏳ Thinking...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
