@@ -31,7 +31,6 @@ function solve() {
         }
         document.getElementById("output").innerHTML = output;
 
-        // ✅ SHOW MATHEMATICAL 3D PLOTLY GRAPH (From Python)
         if (sol.plotly_json) {
             document.getElementById("plotlyGraph").style.display = "block";
             let fig = JSON.parse(sol.plotly_json);
