@@ -35,9 +35,7 @@ def solve_lagrange(objective_str, constraint_str, mode):
             result[str(var)] = float(sol[var])
         result["Z"] = float(Z_val)
 
-        # ==========================================
-        # 🌟 GENERATE 3D INTERACTIVE PLOTLY GRAPH
-        # ==========================================
+        
         try:
             if len(variables) == 3:
                 x_var, y_var, z_var = variables[0], variables[1], variables[2]
@@ -70,7 +68,7 @@ def solve_lagrange(objective_str, constraint_str, mode):
                     fig.add_trace(go.Surface(
                         x=X, y=Y, z=Z_grid,
                         surfacecolor=Color_grid,
-                        colorscale='electric', # ✅ FIXED
+                        colorscale='electric', 
                         opacity=0.8,
                         name='Constraint Plane',
                         colorbar=dict(
@@ -119,7 +117,7 @@ def solve_lagrange(objective_str, constraint_str, mode):
                 if isinstance(Z_grid, (int, float)): Z_grid = np.full_like(X, Z_grid)
 
                 fig = go.Figure()
-                fig.add_trace(go.Surface(x=X, y=Y, z=Z_grid, colorscale='electric', opacity=0.8)) # ✅ FIXED
+                fig.add_trace(go.Surface(x=X, y=Y, z=Z_grid, colorscale='electric', opacity=0.8)) 
                 fig.add_trace(go.Scatter3d(
                     x=[x_opt], y=[y_opt], z=[z_opt],
                     mode='markers', marker=dict(size=8, color='#ff0055', symbol='diamond'), name='Optimal Point'
