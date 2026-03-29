@@ -16,7 +16,6 @@ To develop an interactive application that demonstrates how Lagrange multipliers
 * Provides **interactive 3D visualization** using Plotly
 * Includes a **chatbot assistant** for mathematical queries
 
-
 ## Input Format
 ### Objective Function
 
@@ -36,14 +35,16 @@ Enter as:
 
 Do NOT use:
 * x+y=10 (incorrect)
-
-
-
+* 
 ### Mode
 * max → for maximization
 * min→ for minimization
 
+
 ## How to Run the Project
+  Installation Requirements
+- Python 3.8 or above
+- pip (Python package manager)
 
 ### 1. Clone the Repository
 git clone <your-repository-link>
@@ -64,6 +65,7 @@ python app.py
 ### 5. Open in Browser
 http://127.0.0.1:5005
 
+
 ## Example Usage
 ### Input:
 
@@ -75,6 +77,37 @@ http://127.0.0.1:5005
 * x = 5
 * y = 5
 * Maximum Value = 25
+
+
+ ## Working
+1. User enters objective function and constraint
+2. Input is sent to Flask backend
+3. The solver converts expressions using SymPy
+4. Lagrangian function is formed
+5. Partial derivatives are computed
+6. Equations are solved to get optimal values
+7. Result is displayed on UI
+8. AI generates explanation using Gemini API
+9. Plotly generates visualization (if applicable)
+
+
+## Theory
+The Lagrangian Method is used to solve optimization problems with constraints.
+A new function called the Lagrangian is formed:
+L(x, y, λ) = f(x, y) + λ(g(x, y))
+
+Where:
+- f(x, y) is the objective function
+- g(x, y) = 0 is the constraint
+- λ is the Lagrange multiplier
+
+The optimal solution is obtained by solving:
+∂L/∂x = 0  
+∂L/∂y = 0  
+∂L/∂λ = 0  
+
+This converts a constrained problem into an unconstrained one.
+
 
 ## Project Structure
 
@@ -118,7 +151,6 @@ EM4-Lagrangian-Optimization/
 * Deploy application online (Render/Vercel)
 
 
-
 ## Team Members
 
 *Kavita Gupta
@@ -127,6 +159,21 @@ EM4-Lagrangian-Optimization/
 *Nikhil Sakpal
 *Yash Patil
 *Gaurav Ghude
+
+## Contributions
+
+Each team member contributed through GitHub commits, including:
+- Backend development
+- UI design
+- Documentation
+- Testing and debugging
+
+## References
+
+- Engineering Mathematics-IV Notes
+- SymPy Documentation: https://docs.sympy.org/
+- Flask Documentation: https://flask.palletsprojects.com/
+- Plotly Documentation: https://plotly.com/python/
 
 ## Conclusion
 
