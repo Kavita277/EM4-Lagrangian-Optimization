@@ -180,7 +180,9 @@ Each team member contributed through GitHub commits, including:
 This project demonstrates how mathematical optimization techniques like the **Lagrangian Method** can be effectively implemented using programming. It bridges the gap between theoretical concepts and practical applications through an interactive and user-friendly interface.
 
 ##Output Snapshot
-<img width="1861" height="880" alt="image" src="https://github.com/user-attachments/assets/b6e8cf31-2b9e-4c69-a3dc-15055ae1da49" />
-<img width="1789" height="817" alt="image" src="https://github.com/user-attachments/assets/6e522886-a473-442d-a451-7fb2dca820e5" />
+![WhatsApp Image 2026-03-29 at 5 56 22 PM](https://github.com/user-attachments/assets/103d2ca0-7398-4998-9dad-9a29687dcafd)
+![WhatsApp Image 2026-03-29 at 5 56 36 PM](https://github.com/user-attachments/assets/f67c9ee7-cef0-49df-839b-a37863841e3a)
+
+
 
 
